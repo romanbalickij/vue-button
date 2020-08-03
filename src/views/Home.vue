@@ -1,18 +1,31 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <AppButton @click.prevent="clicked"></AppButton>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
+import AppButton from "@/components/AppButton";
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    AppButton
+
+  },
+  data() {
+    return {
+
+        counter: 0
+
+    }
+  },
+
+  methods:{
+    clicked() {
+
+      console.log('gfgf')
+    }
   }
 }
 </script>
