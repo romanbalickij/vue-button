@@ -1,13 +1,19 @@
 <template>
-<router-link
-    class="btn"
-    @click.native="$emit('click', $event)"
-    :to="to"
-    :class="[
-      themes[theme], sizes[size]
+  <router-link
+      class="btn"
+      @click.native="clicked"
+      :to="to"
+      :disabled="disabled"
+      :class="[
+      themes[theme], sizes[size],{
+      'disabled':disabled
+      }
     ]"
->
-  Sign in</router-link>
+
+  >
+    <slot/>
+
+  </router-link>
 </template>
 
 <script>
@@ -38,7 +44,11 @@ name: "AppButton",
       type:String,
       default: 'normal'
     },
-
+    disabled:{
+      required: false,
+      type:Boolean,
+      default: false
+    },
     to:{
       required:false,
       type:Object,
@@ -50,11 +60,13 @@ name: "AppButton",
       }
 
     },
-
-    methods:{
-      clicked(e) {
-        this.$emit('click', e)
+  },
+  methods:{
+    clicked(e) {
+      if(this.disabled){
+        return
       }
+      this.$emit('click', e)
     }
   }
 
